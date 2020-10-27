@@ -1,0 +1,94 @@
+{
+	"title": "dns",
+	"description": "DNS ",
+	"configuration": {
+		"ServerAdmin": "hostmaster@^^domain_name^^"
+	},
+	"os_packages": [
+		{
+			"type": "debian",
+			"name": "bind"
+		}
+	],
+	"persistent": [
+		{
+			"type": "dir",
+			"destination": "/etc/named/",
+			"source": "/var/lib/containers/^^identifier^^/"
+		}
+	],
+	"binding_anchor": {
+		"variables": {
+			"hostname": "",
+			"domain": "",
+			"record_type": "",
+			"ttl": "3600"
+		},
+		"strategies": {
+			"addition": {
+				"type": "container_script",
+				"path": "/usr/local/bin/add_record.sh",
+				"required": [
+					"hostname",
+					"domain"
+				],
+				"accepted": [
+					"hostname",
+					"domain",
+					"record_type",
+					"ttl",
+					"soa"
+				]
+			},
+			"delete": {
+				"type": "container_script",
+				"path": "/usr/local/bin/remove_record.sh",
+				"required": [
+					"domain",
+					"hostname"
+				],
+				"accepted": [
+					"domain",
+					"hostname",
+					"record_type",
+					"ttl"
+				]
+			},
+			"add_zone": {
+				"type": "container_script",
+				"path": "/usr/local/bin/add_zone.sh",
+				"required": [
+					"domain",
+					"hostname"
+				],
+				"accepted": [				
+					"domain",
+					"hostname",
+					"soa",
+					"ttl"
+				]
+			},
+			"remove_zone" :  {
+				"type": "container_script",
+				"path": "/usr/local/bin/remove_zone.sh",
+				"required": [
+					"domain"
+				],
+				"accepted": [				
+					"domain"
+				]
+			}
+		}
+	},
+	"images": [
+		{
+			"type": "lxd",
+			"image": "enginesd_debian_base"
+		}
+	],
+	"containers": [
+		{
+			"type": "lxd"
+		}
+	]
+}
