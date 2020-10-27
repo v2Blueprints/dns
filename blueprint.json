@@ -2,7 +2,9 @@
 	"title": "dns",
 	"description": "DNS ",
 	"configuration": {
-		"ServerAdmin": "hostmaster@^^domain_name^^"
+		"ServerAdmin": "hostmaster@^^domain_name^^",
+		"forwarders": [],
+		"trusted": ""
 	},
 	"os_packages": [
 		{
@@ -10,7 +12,7 @@
 			"name": "bind"
 		}
 	],
-	"persistent": [
+	"volumes": [
 		{
 			"type": "dir",
 			"destination": "/etc/named/",
