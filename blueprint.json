@@ -22,7 +22,9 @@
 			"hostname": "",
 			"domain": "",
 			"record_type": "",
-			"ttl": "3600"
+			"ttl": "3600",
+			"soa": "",
+			"value": "^^binding_container_ip^^"
 		},
 		"strategies": {
 			"addition": {
@@ -30,11 +32,13 @@
 				"path": "/usr/local/bin/add_record.sh",
 				"required": [
 					"hostname",
-					"domain"
+					"domain",
+					"value"
 				],
 				"accepted": [
 					"hostname",
 					"domain",
+					"value",
 					"record_type",
 					"ttl",
 					"soa"
