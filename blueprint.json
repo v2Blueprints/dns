@@ -29,7 +29,7 @@
 			"value": "^^binding_container_ip^^"
 		},
 		"strategies": {
-			"addition": {
+			"add_host": {
 				"type": "container_script",
 				"path": "/usr/local/bin/add_record.sh",
 				"required": [
@@ -46,7 +46,7 @@
 					"soa"
 				]
 			},
-			"delete": {
+			"remove_host": {
 				"type": "container_script",
 				"path": "/usr/local/bin/remove_record.sh",
 				"required": [
