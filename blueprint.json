@@ -6,12 +6,11 @@
 		"forwarders": [],
 		"trusted": ""
 	},
-	"os_packages": [
-		{
-			"type": "debian",
-			"name": "bind"
-		}
-	],
+	"os_packages":  {
+		"adds": [
+			 "bind"
+			]
+		},
 	"volumes": [
 		{
 			"type": "dir",
